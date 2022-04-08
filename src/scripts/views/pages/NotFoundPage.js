@@ -22,7 +22,7 @@ function NotFoundPage() {
   }
 
   const backToHome = () => {
-    history.push("/")
+    history.push("/dashboard")
   }
   return (
     <div style={pageStyle}>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import apiClient from "../../data/api";
@@ -10,19 +11,16 @@ function HomePage() {
   const checkInput = () => {
     let input = document.querySelector(".name-input");
     let modal = document.querySelector("#modalContainer");
-    console.log(input.innerHTML);
     apiClient.post("/checkname", {
       userName: `${input.innerHTML}`,
     }).then((res) => {
       // console.log(res.data);
       if (res.data.code === 200) {
-        console.log(res.data.message);
         Cookies.set('loggedIn', true);
         Cookies.set('id', res.data.data.id);
         Cookies.set('username', res.data.data.username);
         history.push("/dashboard");
       } else {
-        console.log(res.data.message);
         modal.classList.remove("hidden");
       }
     }).catch((error) => {

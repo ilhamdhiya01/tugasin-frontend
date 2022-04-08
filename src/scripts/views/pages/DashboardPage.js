@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import CancelIcon from '@material-ui/icons/Cancel';
 import ilustrationEmptyTask from "../../../images/peep-2.svg"
@@ -22,12 +23,10 @@ function DashboardPage() {
   const checkTask = (id) => {
     // Get task list
     apiClient.get(`taskById/${id}`).then((res) => {
-      console.log(res.data);
       if (res.data.data.length !== 0) {
         emptyTaskAlertHidden();
         setTaskList(res.data.data);
       } else {
-        console.log("Kosong bro");
         emptyTaskAlertVisible();
         setTaskList(res.data.data);
       }
@@ -38,7 +37,6 @@ function DashboardPage() {
 
   const deleteTask = (id) => {
     apiClient.delete(`delete/${id}`).then((res) => {
-        console.log(res.data);
         checkTask(userId);
     }).catch((error) => {
       console.log(error);
@@ -47,7 +45,6 @@ function DashboardPage() {
 
   const addTask = (id) => {
     let input = document.querySelector(".task-input");
-    console.log(input.innerHTML);
     apiClient.post("/task/add", {
       userId: id,
       todoMessage: `${input.innerHTML}`,

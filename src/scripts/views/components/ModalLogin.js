@@ -13,13 +13,11 @@ function ModalLogin() {
   const createAccount = () => {
     let modal = document.querySelector("#modalContainer");
     let input = document.querySelector(".name-input");
-    console.log(input.innerHTML)
     apiClient.post("/createuser", {
       userName: `${input.innerHTML}`,
     }).then((res) => {
       // console.log(res.data);
       if (res.data.code === 201) {
-        console.log(res.data.message);
         Cookies.set('loggedIn', true);
         Cookies.set('id', res.data.data.id);
         Cookies.set('username', res.data.data.username);
